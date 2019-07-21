@@ -1,8 +1,0 @@
-window.storyFormat({
-	"name" : "Speckyman",
-	"version" : "0.1",
-	"author" : "Pierre-Edouard Guerin",
-	"description" : "Export JSON pour Semper",
-	"proofing" : false,
-	"source" : "var Twison={extractLinksFromText:function(t){var n=t.match(/\\[\\[.+?\\]\\]/g);return n?n.map(function(t){var n=t.match(/\\[\\[(.*?)\\-\\&gt;(.*?)\\]\\]/);return n?{name:n[1],link:n[2]}:(t=t.substring(2,t.length-2),{name:t,link:t})}):void 0},convertPassage:function(t){var n={text:t.innerHTML},a=Twison.extractLinksFromText(n.text);if(a&&(n.links=a),[\"name\",\"pid\",\"position\",\"tags\"].forEach(function(a){var e=t.attributes[a].value;e&&(n[a]=e)}),n.position){var e=n.position.split(\",\");n.position={x:e[0],y:e[1]}}return n.tags&&(n.tags=n.tags.split(\" \")),n},convertStory:function(t){var n=t.getElementsByTagName(\"tw-passagedata\"),a=Array.prototype.slice.call(n).map(Twison.convertPassage),e={passages:a};[\"name\",\"startnode\",\"creator\",\"creator-version\",\"ifid\"].forEach(function(n){var a=t.attributes[n].value;a&&(e[n]=a)});var i={};return e.passages.forEach(function(t){i[t.name]=t.pid}),e.passages.forEach(function(t){t.links&&t.links.forEach(function(t){t.pid=i[t.link]})}),e},convert:function(){var t=document.getElementsByTagName(\"tw-storydata\")[0],n=JSON.stringify(Twison.convertStory(t),null,2);document.getElementById(\"output\").innerHTML=n}};window.Twison=Twison;\t\t\r\n\t\t</script>\r\n\t</head>\r\n\t<body>\r\n\t\t<pre id=\"output\">\r\n\t\t\r\n\t\t</pre>\r\n\t\t<div id=\"storyData\" style=\"display: none;\">\r\n\t\t\t{{STORY_DATA}}\r\n\t\t</div>\r\n\t\t<script>\r\n\t\t\tTwison.convert()\r\n\t\t</script>\r\n\t</body>\r\n</html>"
-});
