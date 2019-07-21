@@ -23,6 +23,46 @@ door_image.src = "door.png";
 var charPlayer = new Image();
 charPlayer.src = "ressources/images/characters/costa_walk.png";
 
+var charTest = new Image();
+charTest.src = "ressources/images/characters/costa_walk.png";
+
+
+console.log(charPlayer.width)
+
+
+
+
+
+function drawFrame(img,frameX, frameY, canvasX, canvasY, width,height,scaledWideth,scaledHeight) {
+  context.drawImage(img,
+                frameX * width, frameY * height, width, height,
+                canvasX, canvasY, scaledWidth, scaledHeight);
+}
+
+
+var ctest = {
+  x: 0,
+  y: 0,
+  height: 32,
+  width: 32,  
+  cycleLoop: [0, 1, 2, 3,4 , 5 ,6,7],
+  currentLoopIndex: 0,
+  frameCount:0,
+  draw: function(x, y){
+  scaledWidth= 64
+  scaledHeight= 128
+  SpriteLinePx=64
+  this.frameCount++
+    if(this.frameCount > 15) {
+      ctest.currentLoopIndex++;
+    }    
+    if(this.currentLoopIndex >= this.cycleLoop.length){
+      this.currentLoopIndex = 0;
+    }
+    context.drawImage(charTest, SpriteLinePx*this.currentLoopIndex, 64, 32, 64, this.x, this.y, scaledWidth,scaledHeight);
+  }
+}
+
 
 var player = {
 	x: 5,
@@ -38,16 +78,15 @@ var player = {
 	jumpStrength: 7,
 	position: "idle",
 	draw: function(){
-		startX = 0;
-		startY = 0;
-		if(this.position == "left"){
+		if(this.position == "right" || this.position == "idle"){
 			startX = 0;
-			startY= 0;
-		} else if(this.position == "right"){
-			startX = 64;
-			startY = 64;
+			startY = 0;
+			context.drawImage(charPlayer, startX, startY, 32, 64, this.x, this.y, playerScaledWidth, playerScaledHeight);
+		} else if(this.position == "left"){
+			startX = charPlayer.width-32;
+		    startY = 64;
+			context.drawImage(charPlayer, startX, startY, 32, 64, this.x, this.y, playerScaledWidth, playerScaledHeight);
 		}
-		context.drawImage(charPlayer, startX, startY, 32, 64, this.x, this.y, playerScaledWidth, playerScaledHeight);
 	}
 	
 }
@@ -228,6 +267,7 @@ function loop(){
 	draw_platforms();
 	player.draw();
 	goal.draw();
+	ctest.draw();
 
 	player.position = "idle";
 
