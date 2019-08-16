@@ -21,10 +21,10 @@ var door_image = new Image();
 door_image.src = "door.png";
 
 var charPlayer = new Image();
-charPlayer.src = "ressources/images/characters/costa_walk.png";
+charPlayer.src = "ressources/images/characters/specky_walk.png";
 
 var charTest = new Image();
-charTest.src = "ressources/images/characters/costa_walk.png";
+charTest.src = "ressources/images/characters/gorilla_mob4_walk.png";
 
 
 console.log(charPlayer.width)
@@ -51,15 +51,27 @@ var ctest = {
   draw: function(x, y){
   scaledWidth= 64
   scaledHeight= 128
-  SpriteLinePx=64
-  this.frameCount++
-    if(this.frameCount > 15) {
+  SpriteLinePx=32
+  //this.frameCount++
+    if(this.frameCount > 5) {
       ctest.currentLoopIndex++;
+      this.frameCount =0;
     }    
     if(this.currentLoopIndex >= this.cycleLoop.length){
       this.currentLoopIndex = 0;
     }
-    context.drawImage(charTest, SpriteLinePx*this.currentLoopIndex, 64, 32, 64, this.x, this.y, scaledWidth,scaledHeight);
+    //drawImage(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight)
+    //sx: the x-axis coordinate of the top left corner of the sub-rectangle of the source image to draw into the destination context.
+    //sWidth: the width of the sub-rectangle of the source image to draw into the destination context. 
+    //If not specified, the entire rectangle from the coordinates specified by sx and sy to the bottom-right corner of the image is used.
+    //dx: the x-axis coordinate in the destination canvas at which to place the top-left corner of the source image.
+    //dWidth: the width to draw the image in the destination canvas. This allows scaling of the drawn image. 
+    //If not specified, the image is not scaled in width when drawn.
+    context.drawImage(charTest,
+      SpriteLinePx*this.currentLoopIndex, 64,
+      32, 64,
+      this.x, this.y,
+      scaledWidth,scaledHeight);
   }
 }
 
@@ -77,16 +89,46 @@ var player = {
 	grounded: false,
 	jumpStrength: 7,
 	position: "idle",
+	prePosition: "idle",
+	//animation
+	cycleLoop: [0, 1, 2, 3,4 , 5 ,6,7],
+    currentLoopIndex: 0,
+    frameCount:0,
 	draw: function(){
-		if(this.position == "right" || this.position == "idle"){
-			startX = 0;
-			startY = 0;
-			context.drawImage(charPlayer, startX, startY, 32, 64, this.x, this.y, playerScaledWidth, playerScaledHeight);
-		} else if(this.position == "left"){
-			startX = charPlayer.width-32;
-		    startY = 64;
-			context.drawImage(charPlayer, startX, startY, 32, 64, this.x, this.y, playerScaledWidth, playerScaledHeight);
-		}
+		scaledWidth= 64
+  		scaledHeight= 128
+  		SpriteLinePx=32
+  		if(this.frameCount > 5) {
+      		this.currentLoopIndex++;
+      		this.frameCount =0;
+    	}    
+    	if(this.currentLoopIndex >= this.cycleLoop.length){
+      		this.currentLoopIndex = 0;
+    	}
+    	//idle
+		if(this.prePosition == "left" && this.position == "idle")  {
+			this.position == "left"
+    		context.drawImage(charPlayer, 224, 0, 32, 64, this.x, this.y, playerScaledWidth, playerScaledHeight);
+    	} else if(this.position == "right" && this.prePosition == "right") {
+    		console.log("toujours à gauche")
+    		console.log(this.currentLoopIndex)
+    		context.drawImage(charPlayer, SpriteLinePx*this.currentLoopIndex, 64, 32, 64, this.x, this.y, playerScaledWidth, playerScaledHeight);
+    	} else if(this.position == "right" && this.prePosition != "right") {
+    		console.log("chgt de direction !!!")
+    		this.currentLoopIndex = 0;
+    		this.frameCount =0;
+    		context.drawImage(charPlayer, SpriteLinePx*this.currentLoopIndex, 64, 32, 64, this.x, this.y, playerScaledWidth, playerScaledHeight);
+    	} else if(this.position == "left" && this.prePosition == "left") {
+    	    context.drawImage(charPlayer, SpriteLinePx*this.currentLoopIndex, 128, 32, 64, this.x, this.y, playerScaledWidth, playerScaledHeight);	
+    	} else if(this.position == "left" && this.prePosition != "left") {
+    		this.currentLoopIndex = 5;
+    		this.frameCount =0;
+    		context.drawImage(charPlayer, SpriteLinePx*this.currentLoopIndex, 128, 32, 64, this.x, this.y, playerScaledWidth, playerScaledHeight);
+ 	
+    	} else {
+    		context.drawImage(charPlayer, 0, 0, 32, 64, this.x, this.y, playerScaledWidth, playerScaledHeight);
+    	}
+
 	}
 	
 }
@@ -268,8 +310,13 @@ function loop(){
 	player.draw();
 	goal.draw();
 	ctest.draw();
+	ctest.frameCount++;
+	player.frameCount++;
 
-	player.position = "idle";
+	if(player.position != "idle") {
+		player.prePosition = player.position;
+	} 
+	//player.position = "idle";
 
 	if(keys[38] || keys[32]){
 		if(!player.jumping){
@@ -283,13 +330,13 @@ function loop(){
 		if(player.velX < player.speed){
 			player.velX+=2;
 		}
-	}
-
-	if(keys[37]){
+	} else if(keys[37]){
 		player.position = "left";
 		if(player.velX > -player.speed){
 			player.velX-=2;
 		}
+	} else {
+		player.position = "idle";
 	}
 
 	player.x += player.velX;
