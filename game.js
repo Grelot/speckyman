@@ -107,7 +107,6 @@ var player = {
     	}
     	//idle
 		if(this.prePosition == "left" && this.position == "idle")  {
-			this.position == "left"
     		context.drawImage(charPlayer, 224, 0, 32, 64, this.x, this.y, playerScaledWidth, playerScaledHeight);
     	} else if(this.position == "right" && this.prePosition == "right") {
     		console.log("toujours à gauche")
