@@ -1,4 +1,4 @@
-
+// game start again when the world is done
 function reset(){
 	player.x = 5;
 	player.y = canvas.height-25;

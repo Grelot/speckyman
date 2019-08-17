@@ -4,5 +4,5 @@ function startGame(){
 	clearCanvas();
 	audio.play();
 	// enter into the loop of the game
-	requestAnimationFrame(loop);
+	requestAnimationFrame(loop); // run loop.js
 }

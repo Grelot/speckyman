@@ -9,7 +9,7 @@ var goal = {
 		context.drawImage(door_image, this.x, this.y);
 	}
 }
-
+// background sprite
 var background = {
 	x: 0,
 	y: 0,
@@ -21,7 +21,7 @@ var background = {
 }
 
 
-
+// define platforms coordinates and dimensions
 var platforms = [];
 var platform_width = 120;
 var platform_height = 10;
@@ -92,7 +92,7 @@ platforms.push({
 
 
 
-
+// draw all platforms
 function draw_platforms(){
 	context.fillStyle = "#907020";
 	for(var i = 0; i < platforms.length; i++){

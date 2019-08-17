@@ -13,7 +13,6 @@ function loop(){
 	if(player.position != "idle") {
 		player.prePosition = player.position;
 	} 
-	//player.position = "idle";
 
 	if(keys[38] || keys[32]){
 		if(!player.jumping){

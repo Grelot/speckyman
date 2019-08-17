@@ -17,6 +17,7 @@ var player = {
 	cycleLoop: [0, 1, 2, 3,4 , 5 ,6,7],
     currentLoopIndex: 0,
     frameCount:0,
+    // draw player sprite at a given frame
 	draw: function(){
 		scaledWidth= 64
   		scaledHeight= 128
@@ -28,22 +29,26 @@ var player = {
     	if(this.currentLoopIndex >= this.cycleLoop.length){
       		this.currentLoopIndex = 0;
     	}
-    	//idle
+    	//idle left
 		if(this.prePosition == "left" && this.position == "idle")  {
     		context.drawImage(charPlayer, 224, 0, 32, 64, this.x, this.y, playerScaledWidth, playerScaledHeight);
+        // keep walking on the right
     	} else if(this.position == "right" && this.prePosition == "right") {
     		context.drawImage(charPlayer, SpriteLinePx*this.currentLoopIndex, 64, 32, 64, this.x, this.y, playerScaledWidth, playerScaledHeight);
-    	} else if(this.position == "right" && this.prePosition != "right") {
+    	// start to walk on the right
+        } else if(this.position == "right" && this.prePosition != "right") {
     		this.currentLoopIndex = 0;
     		this.frameCount =0;
     		context.drawImage(charPlayer, SpriteLinePx*this.currentLoopIndex, 64, 32, 64, this.x, this.y, playerScaledWidth, playerScaledHeight);
-    	} else if(this.position == "left" && this.prePosition == "left") {
+    	// keep walking on the left
+        } else if(this.position == "left" && this.prePosition == "left") {
     	    context.drawImage(charPlayer, SpriteLinePx*this.currentLoopIndex, 128, 32, 64, this.x, this.y, playerScaledWidth, playerScaledHeight);	
-    	} else if(this.position == "left" && this.prePosition != "left") {
+    	// start walking on the right
+        } else if(this.position == "left" && this.prePosition != "left") {
     		this.currentLoopIndex = 5;
     		this.frameCount =0;
     		context.drawImage(charPlayer, SpriteLinePx*this.currentLoopIndex, 128, 32, 64, this.x, this.y, playerScaledWidth, playerScaledHeight);
- 	
+ 	    // idle right (default)
     	} else {
     //drawImage(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight)
     //sx: the x-axis coordinate of the top left corner of the sub-rectangle of the source image to draw into the destination context.

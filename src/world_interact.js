@@ -1,4 +1,4 @@
-
+//collision platform player...
 function collisionCheck(character, platform){
 
 	var vectorX = (character.x + (character.width/2)) - (platform.x + (platform.width/2));

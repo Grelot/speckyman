@@ -1,20 +1,21 @@
+///////////////////////////////////////////////////////////////////////////////
+// GLOBAL VARIABLES
+// canvas & windows
 var canvas = document.getElementById('game');
 canvas.width=window.innerWidth
 canvas.height=window.innerHeight
-
 //canvas.width=640
 //canvas.height=360
-
-///////////////////////////////////////////////////////////////////////////////
 console.log(canvas.width)
 
 var context = canvas.getContext('2d');
 var gameStarted = false;
 var keys = [];
-var friction = 0.8;
+var friction = 0.8; 
 var gravity = 0.98;
-var completed = false;
+var completed = false; //game over
 
+///////////////////////////////////////////////////////////////////////////////
 // clear canvas
 function clearCanvas(){
 	context.clearRect(0, 0, canvas.width, canvas.height);
@@ -23,18 +24,15 @@ function clearCanvas(){
 // include a js file in a js file
 function include(filename)
 {
-	var head = document.getElementsByTagName('head')[0];
-	
+	var head = document.getElementsByTagName('head')[0];	
 	script = document.createElement('script');
 	script.src = filename;
-	script.type = 'text/javascript';
-	
+	script.type = 'text/javascript';	
 	head.appendChild(script)
 }
 
-
-
 ///////////////////////////////////////////////////////////////////////////////
+// child scripts to include to main.js
 listSrcScripts=[
 // load images ressources
 "src/load_images.js",
