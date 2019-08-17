@@ -6,8 +6,10 @@ function loop(){
 	draw_platforms();
 	player.draw();
 	goal.draw();
-	mob.draw();
-	mob.frameCount++;
+	monmob1.draw();
+	monmob1.frameCount++;
+	monmob4.draw();
+	monmob4.frameCount++;
 	player.frameCount++;
 
 	if(player.position != "idle") {

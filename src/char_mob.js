@@ -1,13 +1,17 @@
 // draw and position of sprites of a mob
-var mob = {
-  x: 0,
-  y: 0,
-  height: 32,
-  width: 32,  
-  cycleLoop: [0, 1, 2, 3,4 , 5 ,6,7],
-  currentLoopIndex: 0,
-  frameCount:0,
-  draw: function(x, y){
+class mob {
+  constructor(charSet,x,y,height,width) {
+    this.charSet=charSet
+    this.x = x;
+    this.y = y;
+    this.height = height;
+    this.width = width;
+    this.cycleLoop= [0, 1, 2, 3,4 , 5 ,6,7];
+    this.currentLoopIndex= 0;
+    this.frameCount=0;
+
+  } 
+  draw(x, y){
   scaledWidth= 64
   scaledHeight= 128
   SpriteLinePx=32
@@ -20,10 +24,13 @@ var mob = {
       this.currentLoopIndex = 0;
     }
 
-    context.drawImage(charMob,
+    context.drawImage(this.charSet,
       SpriteLinePx*this.currentLoopIndex, 64,
       32, 64,
       this.x, this.y,
       scaledWidth,scaledHeight);
   }
 }
+
+monmob1 = new mob(charMob1,0,0,32,32);
+monmob4 = new mob(charMob4,30,0,32,32);
