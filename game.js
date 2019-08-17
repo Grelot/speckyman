@@ -26,6 +26,7 @@ charPlayer.src = "ressources/images/characters/specky_walk.png";
 var charTest = new Image();
 charTest.src = "ressources/images/characters/gorilla_mob4_walk.png";
 
+var audio = new Audio('ressources/musics/mecha_staline.mp3');
 
 console.log(charPlayer.width)
 
@@ -259,6 +260,7 @@ function intro_screen(){
 function startGame(){
 	gameStarted = true;
 	clearCanvas();
+	audio.play();
 
 	requestAnimationFrame(loop);
 
