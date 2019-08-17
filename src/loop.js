@@ -4,13 +4,31 @@ function loop(){
 	clearCanvas();
 	background.draw();
 	draw_platforms();
-	player.draw();
+	// statics
 	goal.draw();
-	monmob1.draw();
-	monmob1.frameCount++;
-	monmob4.draw();
-	monmob4.frameCount++;
+	// mobs
+	mob1.draw();
+	mob4.draw();
+	//player
+	player.draw();
+
+	mob1.frameCount++;
+	mob4.frameCount++;
+
 	player.frameCount++;
+
+	if(mob4.pathCount < 60) {
+		mob4.direction="right";
+		mob4.x+=2;
+		mob4.pathCount+=2;
+	}else if(mob4.pathCount <120){
+		mob4.direction="left";
+		mob4.pathCount+=2;
+		mob4.x-=2;
+	}else{
+		mob4.direction="idle";
+		mob4.pathCount=0;
+	}
 
 	if(player.position != "idle") {
 		player.prePosition = player.position;

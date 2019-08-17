@@ -38,14 +38,14 @@ listSrcScripts=[
 "src/load_images.js",
 // load audio ressources
 "src/load_audio.js",
-// define PLAYER character sprite
-"src/char_player.js",
 // define MOB character sprite
 "src/char_mob.js",
 // world creation (static objects, platforms, background...)
 "src/world_creation.js",
 // world interaction rules (collision)
 "src/world_interact.js",
+// define PLAYER character sprite
+"src/char_player.js",
 // reset
 "src/reset.js",
 // game over
