@@ -6,4 +6,6 @@ Initiated in 2015, Speckyman is a platform game developed in JavaScript
 
 # Play the game
 
-To run the game, simply execute [index.html](index.html) with your internet browser (firefox, chrome, safari...)
+1. Download the `.zip` archive [here](https://github.com/Grelot/speckyman/archive/master.zip)
+2. Unzip the archive 
+3. To run the game, simply execute [index.html](index.html) with your internet browser (firefox, chrome, safari...)
