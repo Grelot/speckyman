@@ -38,6 +38,8 @@ function loop(){
 		if(!player.jumping){
 			player.velY = -player.jumpStrength*2;
 			player.jumping = true;
+			player.frameCount=0;
+			player.currentLoopIndex=0;
 		}
 	}
 
