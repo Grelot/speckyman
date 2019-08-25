@@ -22,14 +22,14 @@ function collisionCheck(character, platform){
 				collisionDirection = "right";
 				character.x -= offsetX;
 			}
+		}else{
 
-		} else {
 
 			if (vectorY > 0){
-				collisionDirection = "top";
-				character.y += offsetY;
+				collisionDirection = "below";
+				character.y += (platform.height/2);
 			} else {
-				collisionDirection = "bottom";
+				collisionDirection = "above";
 				character.y -= offsetY;
 			}
 

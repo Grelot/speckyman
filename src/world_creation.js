@@ -1,6 +1,14 @@
+//world canvas
+var world_frame = {
+	x: 0,
+	y: 0,
+	width: 4000,
+	height: 500
+}
+
 // draw and position of goal
 var goal = {
-	x: canvas.width-90,
+	x: world_frame.width-90,
 	y: 0,
 	width:40,
 	height:45,
@@ -13,10 +21,10 @@ var goal = {
 var background = {
 	x: 0,
 	y: 0,
-	width:canvas.width,
-	height:canvas.height,
+	width:world_frame.width,
+	height:world_frame.height,
 	draw: function(){
-		context.drawImage(bg_image, this.x, this.y,canvas.width,canvas.height);
+		context.drawImage(bg_image, this.x, this.y,this.width,this.height);
 	}
 }
 
@@ -27,33 +35,46 @@ var platform_width = 120;
 var platform_height = 10;
 
 platforms.push({
-    x: canvas.width-170,
-    y: 50,
+    x: world_frame.width-140,
+    y: world_frame.height-300,
     width: platform_width,
     height: platform_height,
 });
+
+
 platforms.push({
-    x: canvas.width-170,
-    y: canvas.height-50,
-    width: platform_width,
-    height: platform_height,
-});
-platforms.push({
-    x: canvas.width-380,
-    y: canvas.height-120,
-    width: platform_width,
-    height: platform_height,
-});
-platforms.push({
-    x: canvas.width-380,
-    y: canvas.height-240,
+    x: world_frame.width-380,
+    y: world_frame.height-400,
     width: platform_width,
     height: platform_height,
 });
 
 platforms.push({
-    x: canvas.width-590,
-    y: canvas.height-180,
+    x: world_frame.width-480,
+    y: world_frame.height-500,
+    width: platform_width,
+    height: platform_height,
+});
+
+
+
+platforms.push({
+    x: world_frame.width-170,
+    y: world_frame.height-50,
+    width: platform_width,
+    height: platform_height,
+});
+
+platforms.push({
+    x: world_frame.width-380,
+    y: world_frame.height-240,
+    width: platform_width,
+    height: platform_height,
+});
+
+platforms.push({
+    x: world_frame.width-590,
+    y: world_frame.height-180,
     width: platform_width,
     height: platform_height,
 });
@@ -61,32 +82,34 @@ platforms.push({
 // Bottom
 platforms.push({
 	x: 0,
-	y: canvas.height-130,
-	width: canvas.width,
+	y: world_frame.height-50,
+	width: world_frame.width,
 	height: platform_height
 });
 
-// Left Wall
+// right Wall
+
 platforms.push({
-	x: -10,
+	x: 0,
 	y: 0,
-	width: 10,
-	height: canvas.height
+	width: 1,
+	height: world_frame.height
 });
+
 
 // Left Wall
 platforms.push({
-	x: canvas.width,
+	x: world_frame.width,
 	y: 0,
-	width: 10,
-	height: canvas.height
+	width: platform_width,
+	height: world_frame.height
 });
 
 // Floor
 platforms.push({
 	x: 0,
 	y: 0,
-	width: canvas.width,
+	width: world_frame.width,
 	height: platform_height
 });
 

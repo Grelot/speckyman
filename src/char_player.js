@@ -1,7 +1,7 @@
 // objet player position and animation to draw
 var player = {
-	x: 5,
-	y: canvas.height-381,
+	x: canvas.width/2,
+	y: canvas.height/2,
 	width: playerScaledWidth=64,
 	height: playerScaledHeight=128,
 	speed: 5,
@@ -23,7 +23,7 @@ var player = {
 		scaledWidth= 64
   		scaledHeight= 128
   		SpriteLinePx=32
-  		if(this.frameCount > 5) {
+  		if(this.frameCount > 6) {
       		this.currentLoopIndex++;
       		this.frameCount =0;
     	}    

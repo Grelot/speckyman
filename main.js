@@ -2,10 +2,12 @@
 // GLOBAL VARIABLES
 // canvas & windows
 var canvas = document.getElementById('game');
-canvas.width=window.innerWidth
-canvas.height=window.innerHeight
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
 //canvas.width=640
-//canvas.height=360
+//canvas.height=1500
+
+
 console.log(canvas.width)
 
 var context = canvas.getContext('2d');
@@ -14,6 +16,8 @@ var keys = [];
 var friction = 0.8; 
 var gravity = 0.98;
 var completed = false; //game over
+
+
 
 ///////////////////////////////////////////////////////////////////////////////
 // clear canvas
@@ -38,14 +42,16 @@ listSrcScripts=[
 "src/load_images.js",
 // load audio ressources
 "src/load_audio.js",
-// define MOB character sprite
-"src/char_mob.js",
 // world creation (static objects, platforms, background...)
 "src/world_creation.js",
 // world interaction rules (collision)
 "src/world_interact.js",
+// define MOB character sprite
+"src/char_mob.js",
 // define PLAYER character sprite
 "src/char_player.js",
+// camera
+"src/camera.js",
 // reset
 "src/reset.js",
 // game over

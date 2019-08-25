@@ -1,8 +1,15 @@
 // what happend in the game at each frame
 function loop(){
+		// camera	
+	CAMERA.old_following();
+	if(CAMERA.shift_x !=0) {
+		//context.translate( CAMERA.shift_x, 0);
+	}
+
 
 	clearCanvas();
-	background.draw();
+
+	//background.draw();
 	draw_platforms();
 	// statics
 	goal.draw();
@@ -11,7 +18,7 @@ function loop(){
 	mob4.draw();
 	//player
 	player.draw();
-
+	
 	mob1.frameCount++;
 	mob4.frameCount++;
 
@@ -69,15 +76,13 @@ function loop(){
 
 		if(direction == "left" || direction == "right"){
 			player.velX = 0;
-		} else if(direction == "bottom"){
+		} else if(direction == "above"){
 			player.jumping = false;
 			player.grounded = true;
-		} else if(direction == "top"){
-			player.velY *= -1;
+		} else if(direction == "below"){
+			player.velY *= 1;
 		}
-
 	}
-
 	if(player.grounded){
 		player.velY = 0;
 	}
@@ -89,6 +94,8 @@ function loop(){
 	if(!completed){
 		requestAnimationFrame(loop);
 	}
+
+
 
 }
 

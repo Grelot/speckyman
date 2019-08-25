@@ -11,9 +11,9 @@ class mob {
     this.frameCount=0;
     this.pathCount=0;
     this.direction="idle";
-    this.scaledWidth= 64
-    this.scaledHeight= 128
-    this.SpriteLinePx=32
+    this.scaledWidth= 64;
+    this.scaledHeight= 128;
+    this.SpriteLinePx=32;
 
   } 
   draw(x, y){
